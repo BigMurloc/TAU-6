@@ -20,6 +20,7 @@ public class GoogleTest {
         System.setProperty("webdriver.gecko.driver", "resources/geckodriver.exe");
         FirefoxOptions firefoxOptions = new FirefoxOptions();
         firefoxOptions.addPreference("intl.accept_languages", "en-US");
+        firefoxOptions.addArguments("-headless");
         driver = new FirefoxDriver(firefoxOptions);
 
         // Implicity wait -> max czas na znalezienie elementu na stronie

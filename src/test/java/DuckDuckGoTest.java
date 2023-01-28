@@ -25,7 +25,7 @@ public class DuckDuckGoTest {
     public static void setUpDriver() {
         System.setProperty("webdriver.gecko.driver", "resources/geckodriver.exe");
         FirefoxOptions options = new FirefoxOptions();
-//        options.addArguments("--headless");
+        options.addArguments("--headless");
         driver = new FirefoxDriver(options);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }

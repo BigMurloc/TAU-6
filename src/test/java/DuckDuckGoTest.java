@@ -25,7 +25,7 @@ public class DuckDuckGoTest {
     public static void setUpDriver() {
         System.setProperty("webdriver.gecko.driver", "resources/geckodriver.exe");
         FirefoxOptions options = new FirefoxOptions();
-        options.addArguments("--headless");
+//        options.addArguments("--headless");
         driver = new FirefoxDriver(options);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
@@ -75,8 +75,8 @@ public class DuckDuckGoTest {
         WebElement searchInput = driver.findElement(By.id("search_form_input_homepage"));
         searchInput.sendKeys("Stack Overflow");
         searchInput.submit();
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[data-testid=\"result-title-a\"]")));
-        List<WebElement> links = driver.findElements(By.cssSelector("[data-testid=\"result-title-a\"]"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.linkText("Stack Overflow - Where Developers Learn, Share, & Build Careers")));
+        List<WebElement> links = driver.findElements(By.linkText("Stack Overflow - Where Developers Learn, Share, & Build Careers"));
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", links.get(0));
         wait.until(ExpectedConditions.urlToBe("https://stackoverflow.com/"));
         assertEquals(driver.getCurrentUrl(), "https://stackoverflow.com/");
@@ -85,8 +85,8 @@ public class DuckDuckGoTest {
     @Test
     public void shouldClickOnFirstSearchResultWhichShouldBeStackOverflowComUsingActions() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("search_form_input_homepage")));
-        WebElement searchInput = driver.findElement(By.id("search_form_input_homepage"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("search__input--adv")));
+        WebElement searchInput = driver.findElement(By.className("search__input--adv"));
         searchInput.sendKeys("Stack Overflow");
         searchInput.submit();
         wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[data-testid=\"result-title-a\"]")));
